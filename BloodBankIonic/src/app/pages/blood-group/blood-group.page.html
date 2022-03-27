@@ -1,0 +1,81 @@
+<app-header></app-header>
+
+<ion-content [fullscreen]="true">
+
+  <div class="container">
+    <div style="margin-top: 10px;">
+      <div class="toggle_button font-size-15"> ADD BLOOD DONATION
+        <button type="button" class="btn-2" (click)="openModalDialog()"><ion-icon name="add"></ion-icon></button>
+    </div>
+  </div>
+
+  <div style="margin-top: 10px;"></div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Doctor</th>
+        <th>Donor</th>
+        <th>Quantity</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let i of GetAllBloodDonationList">
+      <tr>
+        <td> {{i.doctor_name}} </td>
+        <td> {{i.donor_name}} </td>
+        <td> {{i.quantity}} </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+  <!------------------------------- Blood Group Add Modal Open ----------------------------------->
+  <div class="modal" id="custom-modal-1" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+    <div class="modal-dialog" role="document" style="margin-top: 90px;">
+
+      <form [formGroup]="service.bloodDonationModel" autocomplete="off" (submit)="onSubmit()">  
+        <div class="modal-content box-shadow">
+
+         <div class="modal-header"> Add Blood Donation
+            <button type="button" class="close btn-3" aria-label="Close" (click)="closeModalDialog()"><span aria-hidden="true">&times;</span></button>
+          </div>
+  
+        <div class="modal-body">
+          <div class="row">
+
+          <div class="col-sm-3 col-xs-3">
+            <label> Donor: <span style="color: red;">*</span></label>
+          </div>
+          <div class="col-sm-9 col-xs-9 mr-b-20">
+              <input type="text" class="form-control" placeholder="Donor" formControlName="donor_id" />
+          </div>
+
+        <div class="col-sm-3 col-xs-3">
+            <label> Doctor:<span style="color: red;">*</span></label>
+        </div>
+        <div class="col-sm-9 col-xs-9 mr-b-20">
+            <input type="text" class="form-control" placeholder="Doctor" formControlName="doctor_id"/>
+        </div>
+
+          <div class="col-sm-3 col-xs-3">
+            <label> Quantity: <span style="color: red;">*</span></label>
+          </div>
+          <div class="col-sm-9 col-xs-9 mr-b-20">
+              <input type="text" class="form-control" placeholder="Quantity" formControlName="quantity" />
+          </div>
+            
+          </div>
+        </div>
+  
+        <div class="modal-footer">
+          <ion-button type="button" (click)="resetBloodDonationForm()"> Reset </ion-button>
+          <ion-button type="submit" [disabled]="!service.bloodDonationModel.valid"> Submit </ion-button>
+        </div>
+      </div>
+    </form>
+    </div>
+  </div> 
+  <!------------------------------- Blood Group Add Modal Close ----------------------------------->
+
+
+</ion-content>

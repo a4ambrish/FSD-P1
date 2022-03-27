@@ -1,0 +1,57 @@
+<app-header></app-header>
+
+<ion-content [fullscreen]="true">
+    <div class="container">
+      <div style="margin-top: 10px;">
+        <div class="toggle_button font-size-15"> SUMMARY BY BLOOD GROUP </div>
+    </div>
+    
+    <div style="margin-top: 10px;"></div>
+  
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Blood Group</th>
+          <th>Total Quantity</th>
+          <th>No. of Persons</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let i of GetAllBloodGroupSummary">
+        <tr>
+          <td> {{i.blood_group}} </td>
+          <td> {{i.quantity}} </td>
+          <td> {{i.count}} </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <div style="margin-top: 20px;"></div>
+  <div class="container">
+    <div style="margin-top: 10px;">
+      <div class="toggle_button font-size-15"> SUMMARY BY DOCTOR </div>
+  </div>
+  
+  <div style="margin-top: 10px;"></div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Doctor Name</th>
+        <th>Total Quantity</th>
+        <th>No. of Persons</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let i of GetAllDoctorSummary">
+      <tr>
+        <td> {{i.doctor_name}} </td>
+        <td> {{i.quantity}} </td>
+        <td> {{i.count}} </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+</ion-content>

@@ -1,0 +1,26 @@
+<ion-header [translucent]="true" class="bg-color-magenta-pink">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button color="light"></ion-menu-button>
+    </ion-buttons>
+    <h2 class="title"> Blood Bank </h2>
+    
+
+  </ion-toolbar>
+</ion-header>
+
+<div *ngIf="dropdown" class="dropdown" (mouseleave)="dropdown = false" #dropdownbox>
+  <ion-item (click)="dropdown = false" lines="none" [routerLink]="['/update-password']" routerDirection="root" >
+    Change Password
+  </ion-item>
+
+  <ion-item button (click)="logout()" lines="none" routerDirection="root" >
+    logout
+  </ion-item>
+</div> 
+
+  <!------------------------------ Snackbar Open ------------------------------------>
+  <div id="snackbar_module">
+    <h2 id="snack_msg" style="text-transform: capitalize !important;"></h2>
+  </div>
+  <!------------------------------ Snackbar Close ----------------------------------->

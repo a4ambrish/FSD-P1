@@ -1,0 +1,73 @@
+<app-header></app-header>
+
+<ion-content [fullscreen]="true">
+
+  <div class="container">
+    <div style="margin-top: 10px;">
+      <div class="toggle_button font-size-15"> ADD DOCTOR
+        <button type="button" class="btn-2" (click)="openModalDialog()"><ion-icon name="add"></ion-icon></button>
+    </div>
+  </div>
+  
+  <div style="margin-top: 10px;"></div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let i of GetAllDoctorList">
+      <tr>
+        <td> {{i.firstname}} </td>
+        <td> {{i.lastname}} </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+  <!------------------------------- Doctor Add Modal Open ----------------------------------->
+  <div class="modal" id="custom-modal-1" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+    <div class="modal-dialog" role="document" style="margin-top: 90px;">
+
+      <form [formGroup]="service.doctorModel" autocomplete="off" (submit)="onSubmit()">  
+        <div class="modal-content box-shadow">
+
+         <div class="modal-header"> Add Doctor
+            <button type="button" class="close btn-3" aria-label="Close" (click)="closeModalDialog()"><span aria-hidden="true">&times;</span></button>
+          </div>
+  
+        <div class="modal-body">
+          <div class="row">
+              <div class="col-sm-3 col-xs-3">
+                  <label> First Name:<span style="color: red;">*</span></label>
+              </div>
+              <div class="col-sm-9 col-xs-9 mr-b-20">
+                  <input type="text" class="form-control" placeholder="firstname" formControlName="firstname"/>
+                  <!-- <label class="text-danger" *ngIf="service.formModel.get('firstname').touched && service.formModel.get('firstname').errors?.required"> FirstName is required. </label> -->
+              </div>
+
+          <div class="col-sm-3 col-xs-3">
+            <label> Last Name: <span style="color: red;">*</span></label>
+          </div>
+          <div class="col-sm-9 col-xs-9 mr-b-20">
+              <input type="text" class="form-control" placeholder="lastname" formControlName="lastname" />
+              <!-- <label class="text-danger" *ngIf="service.formModel.get('lastname').touched && service.formModel.get('lastname').errors?.required"> LastName is required. </label> -->
+          </div>
+            
+          </div>
+        </div>
+  
+        <div class="modal-footer">
+          <ion-button type="button" (click)="resetDoctorForm()"> Reset </ion-button>
+          <ion-button type="submit" [disabled]="!service.doctorModel.valid"> Submit </ion-button>
+        </div>
+      </div>
+    </form>
+    </div>
+  </div> 
+  <!------------------------------- Doctor Add Modal Close ----------------------------------->
+
+
+</ion-content>

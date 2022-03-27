@@ -1,0 +1,465 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+:host(.button-disabled) {
+  cursor: default;
+  opacity: 0.7;
+  pointer-events: none;
+}
+#snackbar_module {
+  display: None;
+  position: fixed;
+  background: rgb(88 104 255);
+  padding: 15px;
+  left: 27%;
+  right: auto;
+  border-radius: 5px;
+  text-transform: capitalize !important;
+  z-index: 9999;
+  bottom: 5%;
+  top: auto;
+  text-align: left;
+  width: 50%;
+}
+// #snackbar_module {
+//   display: None;
+//   position: absolute;
+//   right: 10px;
+//   top: 35px;
+//   background: #5868ff;
+//   padding: 15px;
+//   border-radius: 5px;
+//   text-transform: capitalize !important;
+//   width: 350px;
+// }
+
+#snackbar_module h2 {
+  color: #FFFFFF;
+  margin: 0;
+  text-transform: capitalize !important;
+  font-weight: 500;
+  font-size: 1rem !important;
+  text-align: center;
+}
+
+
+:host {
+  display: flex;
+  width: 100%;
+  align-items: center;
+.type-toggle {
+    padding-inline-start: 0.5rem;
+.show-option,
+    .hide-option {
+      font-size: 1.2rem;
+      display: block;
+// In case you want to use text instead of icons
+      &:not(ion-icon) {
+        text-transform: uppercase;
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+.display_content{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+
+  ion-row{
+    display: contents;
+  }
+}
+.margin-top-50 {
+  margin-top: 50px;
+}
+.mr-top-20 {
+  margin-top: 20px;
+}
+.mr-10px {
+  margin: 10px 10px;
+}
+.mr-15-0px {
+  margin: 15px 0px;
+}
+.font-white {
+  color:white;
+}
+.bg-color-magenta-pink {
+  background-color: #c74d8d;
+}
+.bg-color-river-bed {
+  background-color: #434d63;
+}
+.bg-color-magenta-sky {
+  background-color: #D170A3;
+}
+.bg-color-chalky {
+  background-color: #F4D896;
+}
+.bg-color-milk-white {
+  background-color: #fafcff;
+}
+
+.color-magenta-pink {
+  color: #c74d8d;
+}
+.color-river-bed {
+  color: #434d63;
+}
+.color-magenta-sky {
+  color: #D170A3;
+}
+.color-chalky {
+  color: #F4D896;
+}
+.color-milk-white {
+  color: #fafcff;
+}
+.color-blue {
+  color: #0a66f0;
+}
+
+.padding-6 {
+  padding: 6%;
+}
+
+.max-width-35 {
+  max-width: 35% !important;
+}
+.btn-river-bed {
+  background-color: #c74d8d;
+  border: 1px solid #c74d8d;
+  border-radius: 4px 0px;
+}
+.pos-r {
+  position: absolute;
+  right: 0;
+}
+.search-1 {
+  background-color: darkseagreen;
+  padding: 6px 11px;
+  text-align: center;
+}
+.search-2 {
+  text-align: center;
+  background-color: aliceblue;
+  padding: 6px 11px;
+}
+
+.btn-1 {
+  background-color: #c74d8d;
+    color: white;
+    position: relative;
+   // top: 18px;
+    border: 1px #c74d8d solid;
+    border-radius: 4px;
+}
+.btn-2 {
+  float: right;
+  background-color: #c74d8d !important;
+  color: #FFF;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  font-size: 1rem;
+  border-radius: .25rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.btn-3 {
+  float: right;
+  background-color: #c74d8d !important;
+  color: #FFF;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  font-size: 12px;
+  padding: 2px 10px;
+  border-radius: .25rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.btn-4 {
+  background-color: green;
+  padding: 2px 7px !important;
+  color: white;
+  font-size: 13px !important;
+}
+
+.btn-5 {
+  background-color: #d00e0ec4;
+  padding: 2px 7px !important;
+  color: white;
+  font-size: 13px !important;
+}
+
+.btn-6 {
+  background-color: #c74d8d;
+  color: white;
+  border: 1px solid #c74d8d;
+  border-radius: 4px 4px;
+  padding: 6px 17px !important;
+}
+
+.img-1 {
+  position: absolute;
+  left: 70px;
+  top: 8px;
+  bottom: 0;
+}
+
+.img-2 {
+  position: absolute;
+  right: 5px;
+  top: 4px;
+  bottom: 0;
+}
+.img-3 {
+  position: absolute;
+  left: 47px;
+  top: 6px;
+  bottom: 0;
+}
+
+.margin-top-4 {
+  margin-top: 4% !important;
+}
+.mr-10-10 {
+  margin: 0px 10px 10px 10px;
+}
+
+.blank-record {
+  text-align: center;
+  padding: 18px 0px 13px 0px;
+  background: #e4a4a4;
+}
+.margin-bottom-10 {
+  margin-bottom: 10px;
+}
+.mr-t-50 {
+  margin-top: 50px;
+}
+
+.padding-r-0 {
+  padding-right: 0 !important;
+}
+.padding-10-3 {
+  padding: 10px 3px;
+}
+.padding-0-15 {
+  padding: 0px 15px;
+}
+.padding-15-0 {
+  padding: 15px 0px;
+}
+.font-size-15 {
+  font-size: 15px;
+}
+
+.shadow-1 {
+  box-shadow: 0 0 10px rgb(0 0 0 / 60%);
+}
+.mr-b-20 {
+  margin-bottom: 20px;
+}
+.mr-t-20 {
+  margin-top: 20px;
+}
+
+.br-default {
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+}
+.box-shadow {
+  box-shadow: 0 0 10px rgb(0 0 0 / 70%);
+}
+
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  //margin: 20px 20px;
+  overflow: auto;
+
+  th {
+    background-color: #f4d896;
+    border: 1px solid #a59c9c;
+  }
+  td {
+    border: 1px solid #dddddd;
+  }
+  td, th {
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+}
+
+table th.mat-header-cell:first-of-type, td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type {
+  padding-left: 0px !important; 
+}
+table th {
+  text-align: center !important;
+}
+table td {
+  text-align: center !important;
+}
+table.center{
+  margin-left: auto;
+  margin-right: auto;
+}
+.scroll-table {
+  position: relative;
+}
+
+.table-responsive {
+  width: 100%;
+  margin-bottom: 15px;
+  overflow-y: hidden;
+}
+
+.color-white {
+  color: white;
+}
+      
+.d-flex {
+  display: flex;
+}
+
+.go-to-container {
+  display: flex;
+  align-items: baseline;
+  background: white;
+  mat-form-field {
+    width: 56px;
+    margin: 6px 4px 0 4px;
+    font-size: 12px;
+  }
+  .go-to-label {
+    font-size: 12px;
+    color: rgba(0,0,0,.54);
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+  }
+}
+
+.adjust-align-1 {
+  position: relative;
+  top: 11px;
+  height: 10px;
+}
+.float-right {
+  float: right;
+}
+
+.pos-right {
+  position: absolute;
+  right: 115px;
+  top: 94px;
+}
+
+.pos-right-1 {
+  position: absolute;
+  right: 20px;
+  top: 94px;
+}
+.pos-right-2 {
+  position: absolute;
+  right: 85px;
+  top: 94px;
+}
+.color-a {
+  color: rgba(0,0,0,.54)
+}
+.font-w-600 {
+  font-weight: 600;
+}
+.scroll-container {
+  border: 2px solid silver;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+
+  &.hide-scrollbar {
+    overflow: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+  }
+}
+
+
+.hd-1 {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  margin-top: 10px
+}
+.toggle_button {
+  background-color: #f4d896;
+  padding: 15px 10px;
+  box-shadow: 0 0 10px rgb(0 0 0 / 70%);
+}
+
+.hd-2 {
+  background-color: #f4d896;
+  padding: 15px 10px;
+}
+.mat-expansion-panel-body {
+  padding: 0px 5px !important;
+}
+
+.bc-s1 {
+  padding-top: 20px;
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 15px !important;
+  font-family: serif !important;
+  font-style: italic !important;
+}
+
+.bc-s2 {
+  text-decoration: none;
+  font-weight: bold; 
+  color: #0466f7;
+  cursor: pointer;
+}
+.bc-s3 {
+  background-color: transparent;
+  font-weight: bold; 
+  color: #0466f7;
+}
+

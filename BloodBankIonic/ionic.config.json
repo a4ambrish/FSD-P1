@@ -1,0 +1,7 @@
+{
+  "name": "BloodBankIonic",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
