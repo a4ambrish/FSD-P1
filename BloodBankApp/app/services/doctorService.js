@@ -19,6 +19,7 @@ class employeeController {
     }
 
     addDoctor(data) {
+        console.log(data)
         return new Promise((resolve, reject) => {
             const query = connect.query(`INSERT INTO doctor(firstname, lastname) VALUES( $1, $2)`,
             [data.firstname, data.lastname], (err, result) => {

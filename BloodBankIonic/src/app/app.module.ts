@@ -14,6 +14,7 @@ import { ReportsPageModule } from './pages/reports/reports.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],

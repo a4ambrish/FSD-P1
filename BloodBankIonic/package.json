@@ -30,6 +30,7 @@
     "@ionic/angular": "^6.0.0",
     "angular-mat-datepicker": "^0.0.2",
     "bootstrap": "^5.1.3",
+    "crypto-js": "^4.1.1",
     "jquery": "^3.6.0",
     "ngx-spinner": "^13.1.1",
     "rxjs": "~6.6.0",

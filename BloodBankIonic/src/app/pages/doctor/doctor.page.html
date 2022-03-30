@@ -44,16 +44,16 @@
                   <label> First Name:<span style="color: red;">*</span></label>
               </div>
               <div class="col-sm-9 col-xs-9 mr-b-20">
-                  <input type="text" class="form-control" placeholder="firstname" formControlName="firstname"/>
-                  <!-- <label class="text-danger" *ngIf="service.formModel.get('firstname').touched && service.formModel.get('firstname').errors?.required"> FirstName is required. </label> -->
+                  <input type="text" class="form-control" placeholder="first name" formControlName="firstname"/>
+                  <label class="text-danger" *ngIf="service.doctorModel.get('firstname').touched && service.doctorModel.get('firstname').errors?.required"> First Name is required. </label>
               </div>
 
           <div class="col-sm-3 col-xs-3">
             <label> Last Name: <span style="color: red;">*</span></label>
           </div>
           <div class="col-sm-9 col-xs-9 mr-b-20">
-              <input type="text" class="form-control" placeholder="lastname" formControlName="lastname" />
-              <!-- <label class="text-danger" *ngIf="service.formModel.get('lastname').touched && service.formModel.get('lastname').errors?.required"> LastName is required. </label> -->
+              <input type="text" class="form-control" placeholder="last name" formControlName="lastname" />
+              <label class="text-danger" *ngIf="service.doctorModel.get('lastname').touched && service.doctorModel.get('lastname').errors?.required"> Last Name is required. </label>
           </div>
             
           </div>

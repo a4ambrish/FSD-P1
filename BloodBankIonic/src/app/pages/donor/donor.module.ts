@@ -6,7 +6,9 @@ import { DonorPageRoutingModule } from './donor-routing.module';
 import { DonorPage } from './donor.page';
 import { HeaderPageModule } from 'src/app/header/header.module';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import {MatNativeDateModule} from '@angular/material/core';
+import { MatNativeDateModule } from '@angular/material/core';
+
+
 @NgModule({
   imports: [
     CommonModule,
@@ -19,6 +21,8 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatNativeDateModule
   ],
   declarations: [DonorPage],
-  providers: []
+  providers: [],
+  exports: [],
+  bootstrap: []  
 })
 export class DonorPageModule {}

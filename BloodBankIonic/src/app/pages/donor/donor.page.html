@@ -49,7 +49,7 @@
               </div>
               <div class="col-sm-9 col-xs-9 mr-b-20">
                   <input type="text" class="form-control" placeholder="Name" formControlName="name"/>
-                  <!-- <label class="text-danger" *ngIf="service.formModel.get('name').touched && service.formModel.get('name').errors?.required"> Name is required. </label> -->
+                  <label class="text-danger" *ngIf="service.donorModel.get('name').touched && service.donorModel.get('name').errors?.required"> Name is required. </label>
               </div>
 
               <div class="col-sm-3 col-xs-3">
@@ -58,7 +58,7 @@
               <div class="col-sm-9 col-xs-9 mr-b-20">
                   <input type="text" class="form-control" placeholder="dob" formControlName="dob" />
                   <!-- <input matInput [matDatepicker]="picker" type="text" class="form-control" placeholder="dd/mm/yyyy" formControlName="dob" (focus)="picker.open()" required/> -->
-                  <!-- <label class="text-danger" *ngIf="service.formModel.get('dob').touched && service.formModel.get('dob').errors?.required"> DOB is required. </label> -->
+                  <!-- <label class="text-danger" *ngIf="service.donorModel.get('dob').touched && service.donorModel.get('dob').errors?.required"> DOB is required. </label> -->
               </div>
 
               <div class="col-sm-3 col-xs-3">
@@ -66,7 +66,7 @@
             </div>
             <div class="col-sm-9 col-xs-9 mr-b-20">
                 <input type="text" class="form-control" placeholder="Date" formControlName="regDate" />
-                <!-- <label class="text-danger" *ngIf="service.formModel.get('date_of_reg').touched && service.formModel.get('date_of_reg').errors?.required"> Name is required. </label> -->
+                <!-- <label class="text-danger" *ngIf="service.donorModel.get('date_of_reg').touched && service.donorModel.get('date_of_reg').errors?.required"> Name is required. </label> -->
             </div>
 
             <div class="col-sm-3 col-xs-3">
@@ -74,7 +74,7 @@
             </div>
             <div class="col-sm-9 col-xs-9 mr-b-20">
                 <input type="text" class="form-control" placeholder="Blood Group" formControlName="bloodGroup"  />
-                <!-- <label class="text-danger" *ngIf="service.formModel.get('blood_group').touched && service.formModel.get('blood_group').errors?.required"> DOB is required. </label> -->
+                <label class="text-danger" *ngIf="service.donorModel.get('bloodGroup').touched && service.donorModel.get('bloodGroup').errors?.required"> Blood Group is required. </label>
             </div>
 
           <div class="col-sm-3 col-xs-3">
@@ -82,7 +82,7 @@
           </div>
           <div class="col-sm-9 col-xs-9 mr-b-20">
               <input type="text" class="form-control" placeholder="Address" formControlName="address" />
-              <!-- <label class="text-danger" *ngIf="service.formModel.get('address').touched && service.formModel.get('address').errors?.required"> Name is required. </label> -->
+              <label class="text-danger" *ngIf="service.donorModel.get('address').touched && service.donorModel.get('address').errors?.required"> Address is required. </label>
           </div>
 
           <div class="col-sm-3 col-xs-3">
@@ -90,7 +90,7 @@
           </div>
           <div class="col-sm-9 col-xs-9 mr-b-20">
               <input type="text" class="form-control" placeholder="City" formControlName="city" />
-              <!-- <label class="text-danger" *ngIf="service.formModel.get('city').touched && service.formModel.get('city').errors?.required"> DOB is required. </label> -->
+              <label class="text-danger" *ngIf="service.donorModel.get('city').touched && service.donorModel.get('city').errors?.required"> City is required. </label>
           </div>
 
           <div class="col-sm-3 col-xs-3">
@@ -98,7 +98,7 @@
           </div>
           <div class="col-sm-9 col-xs-9 mr-b-20">
               <input type="text" class="form-control" placeholder="Pin Code" formControlName="pincode" />
-              <!-- <label class="text-danger" *ngIf="service.formModel.get('pincode').touched && service.formModel.get('pincode').errors?.required"> DOB is required. </label> -->
+              <label class="text-danger" *ngIf="service.donorModel.get('pincode').touched && service.donorModel.get('pincode').errors?.required"> Pin code is required. </label>
           </div>
             
           </div>
@@ -108,7 +108,7 @@
           <ion-button type="button" (click)="resetDonorForm()"> Reset </ion-button>
           <ion-button type="submit" [disabled]="!service.donorModel.valid"> Submit </ion-button>
         </div>
-      </div>
+      </div>  
     </form>
     </div>
   </div> 

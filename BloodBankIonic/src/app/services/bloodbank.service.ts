@@ -105,13 +105,13 @@ constructor(private http: HttpClient, private fb: FormBuilder) { }
 
 
     donorModel = this.fb.group({
-        name: [''],
+        name: ['', Validators.required],
         dob: [''],
         regDate: [''],
-        bloodGroup: [''],
-        address: [''],
-        city: [''],
-        pincode: ['']
+        bloodGroup: ['', Validators.required],
+        address: ['', Validators.required],
+        city: ['', Validators.required],
+        pincode: ['', Validators.required]
         });
 
         addDonor() {
@@ -138,8 +138,8 @@ constructor(private http: HttpClient, private fb: FormBuilder) { }
         }
 
         doctorModel = this.fb.group({
-            firstname: [''],
-            lastname: ['']
+            firstname: ['', Validators.required],
+            lastname: ['', Validators.required]
             });
 
         addDoctor() {
@@ -162,9 +162,9 @@ constructor(private http: HttpClient, private fb: FormBuilder) { }
 
 
         bloodDonationModel = this.fb.group({
-            donor_id: [''],
-            doctor_id: [''],
-            quantity: ['']
+            donor_id: ['', Validators.required],
+            doctor_id: ['', Validators.required],
+            quantity: ['', Validators.required]
             });
             
         addBloodDonator() {
@@ -185,6 +185,22 @@ constructor(private http: HttpClient, private fb: FormBuilder) { }
                     })
                 );
             }
+
+        getAllEncDoctorList() {
+            return this.http.get<any>(this.baseurl + `/v2/doctorlist`).pipe(
+                catchError(error => {
+                    let errorMsg: string;
+                    if (error.error instanceof ErrorEvent) {
+                        errorMsg = `Error: ${error.error.message}`;
+                    } else {
+                        errorMsg = this.getServerErrorMessage(error);
+                    }
+                    return throwError(errorMsg);
+                })
+            );
+        }
+
+
 
 
 }

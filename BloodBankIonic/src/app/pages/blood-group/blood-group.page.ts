@@ -9,12 +9,16 @@ import { CommonServiceService } from './../../services/common-service.service';
 })
 export class BloodGroupPage implements OnInit {
   public GetAllBloodDonationList: any = [];
+  public GetAllDoctorList: any = [];
+  public GetAllDonorList: any = [];
   display='none';
 
   constructor(private commonService: CommonServiceService, private service: BloodBankService) { }
 
   ngOnInit() {
     this.getAllBloodDonationList();
+    this.getAllDoctorList();
+    this.getAllDonorList();
   }
 
   getAllBloodDonationList() {
@@ -34,6 +38,40 @@ export class BloodGroupPage implements OnInit {
   });
 }
 
+getAllDoctorList() {
+  this.service.getAllDoctorList().subscribe((res: any)=> {
+  if(res.status == true) {
+    this.GetAllDoctorList = res.result;
+    this.commonService.hideLoader();
+  }
+  else {
+     this.commonService.hideLoader();
+     this.commonService.showMessage(res.message,'danger');
+  }
+},
+error => {
+   this.commonService.hideLoader();
+   this.commonService.showMessage(error,'danger');
+});
+}
+
+getAllDonorList() {
+  this.service.getAllDonorList().subscribe((res: any)=> {
+  if(res.status == true) {
+    this.GetAllDonorList = res.result;
+   this.commonService.hideLoader();
+  }
+  else {
+    this.commonService.hideLoader();
+    this.commonService.showMessage(res.message,'danger');
+  }
+},
+error => {
+  this.commonService.hideLoader();
+  this.commonService.showMessage(error,'danger');
+});
+}
+
 onSubmit() {
   this.service.addBloodDonator().subscribe((res: any) => {
     if (res.status === true) {
@@ -42,7 +80,7 @@ onSubmit() {
       this.getAllBloodDonationList();
     }
     else {
-      this.commonService.showMessage(res.responseMap.error,'danger');
+      this.commonService.showMessage(res.error,'danger');
     }
   });
 }
@@ -57,7 +95,7 @@ closeModalDialog(){
 }
 
 resetBloodDonationForm() {
-  this.service.donorModel.reset();
+  this.service.bloodDonationModel.reset();
 }
 
 

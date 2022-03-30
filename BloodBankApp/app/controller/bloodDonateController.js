@@ -1,4 +1,5 @@
 const custom = require('../services/bloodDonateService')
+const connect = require('../../database')
 
 module.exports = function(app) {
 
@@ -44,20 +45,30 @@ module.exports = function(app) {
     });
 
 
-    app.post('/api/adddonator',  async(req, res) => {   
-        const data = await custom.addDonator(req.body);   
-        if (data.rowCount != 0) {
-            res.send({
-                status: true,
-                message: "Record Inserted Successfully..!",
-                result: data
+    app.post('/api/adddonator',  async(req, res) => {
+        const id = req.body.donor_id;
+        const details = await connect.query('SELECT * FROM blood_donation WHERE donor_id = $1', [id]);
+        if (details.rows.length != 0) {
+            return res.send({
+                status: false,
+                error:"Donor has already donated blood."
             });
         }
-         else {
-            res.send({
-                status: false,
-                message: "Something went wrong. Please try again..!",
-            });
+        else {
+            const data = await custom.addDonator(req.body);   
+            if (data.rowCount != 0) {
+                res.send({
+                    status: true,
+                    message: "Record Inserted Successfully..!",
+                    result: data
+                });
+            }
+            else {
+                res.send({
+                    status: false,
+                    message: "Something went wrong. Please try again..!",
+                });
+            }
         }
     });
 

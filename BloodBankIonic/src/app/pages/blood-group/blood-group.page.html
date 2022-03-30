@@ -47,14 +47,24 @@
             <label> Donor: <span style="color: red;">*</span></label>
           </div>
           <div class="col-sm-9 col-xs-9 mr-b-20">
-              <input type="text" class="form-control" placeholder="Donor" formControlName="donor_id" />
+              <!-- <input type="text" class="form-control" placeholder="Donor" formControlName="donor_id" /> -->
+            <select class="form-control" formControlName="donor_id">
+              <option selected="selected" disabled="disabled" value="">--select--</option>
+              <option *ngFor="let donor of GetAllDonorList" [value]="donor.id">{{donor.name}}</option>
+            </select>
+            <label class="text-danger" *ngIf="service.bloodDonationModel.get('donor_id').touched && service.bloodDonationModel.get('donor_id').errors?.required">Donor is mandatory.</label>     
           </div>
 
         <div class="col-sm-3 col-xs-3">
             <label> Doctor:<span style="color: red;">*</span></label>
         </div>
         <div class="col-sm-9 col-xs-9 mr-b-20">
-            <input type="text" class="form-control" placeholder="Doctor" formControlName="doctor_id"/>
+            <!-- <input type="text" class="form-control" placeholder="Doctor" formControlName="doctor_id"/> -->
+            <select class="form-control" formControlName="doctor_id">
+              <option selected="selected" disabled="disabled" value="">--select--</option>
+              <option *ngFor="let doctor of GetAllDoctorList" [value]="doctor.id">{{doctor.firstname}} {{doctor.lastname}}</option>
+            </select>
+            <label class="text-danger" *ngIf="service.bloodDonationModel.get('doctor_id').touched && service.bloodDonationModel.get('doctor_id').errors?.required">Doctor is mandatory.</label>     
         </div>
 
           <div class="col-sm-3 col-xs-3">
@@ -62,6 +72,7 @@
           </div>
           <div class="col-sm-9 col-xs-9 mr-b-20">
               <input type="text" class="form-control" placeholder="Quantity" formControlName="quantity" />
+              <label class="text-danger" *ngIf="service.bloodDonationModel.get('quantity').touched && service.bloodDonationModel.get('quantity').errors?.required">Quantity is mandatory.</label>     
           </div>
             
           </div>
