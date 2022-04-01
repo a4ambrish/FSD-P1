@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { DonorPageRoutingModule } from './donor-routing.module';
@@ -21,8 +21,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatNativeDateModule
   ],
   declarations: [DonorPage],
-  providers: [],
-  exports: [],
-  bootstrap: []  
+  providers: [DatePipe],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA] 
 })
 export class DonorPageModule {}

@@ -47,6 +47,20 @@ constructor(private http: HttpClient, private fb: FormBuilder) { }
         );
     }
 
+    getDonorById(config) {
+        return this.http.get<any>(this.baseurl + `/donorById`, config).pipe(
+            catchError(error => {
+                let errorMsg: string;
+                if (error.error instanceof ErrorEvent) {
+                    errorMsg = `Error: ${error.error.message}`;
+                } else {
+                    errorMsg = this.getServerErrorMessage(error);
+                }
+                return throwError(errorMsg);
+            })
+        );
+    }
+
     getAllDoctorList() {
         return this.http.get<any>(this.baseurl + `/doctorlist`).pipe(
             catchError(error => {
@@ -89,6 +103,34 @@ constructor(private http: HttpClient, private fb: FormBuilder) { }
         );
     }
 
+    getBloodGroupSummaryDetails(config) {
+        return this.http.get<any>(this.baseurl + `/bloodgroupsummarydetails`, config).pipe(
+            catchError(error => {
+                let errorMsg: string;
+                if (error.error instanceof ErrorEvent) {
+                    errorMsg = `Error: ${error.error.message}`;
+                } else {
+                    errorMsg = this.getServerErrorMessage(error);
+                }
+                return throwError(errorMsg);
+            })
+        );
+    }
+
+    getDoctorSummaryDetails(config) {
+        return this.http.get<any>(this.baseurl + `/doctorsummarydetails`, config).pipe(
+            catchError(error => {
+                let errorMsg: string;
+                if (error.error instanceof ErrorEvent) {
+                    errorMsg = `Error: ${error.error.message}`;
+                } else {
+                    errorMsg = this.getServerErrorMessage(error);
+                }
+                return throwError(errorMsg);
+            })
+        );
+    }
+
     getAllDoctorSummary() {
         return this.http.get<any>(this.baseurl + `/doctorsummarylist`).pipe(
             catchError(error => {
@@ -106,8 +148,8 @@ constructor(private http: HttpClient, private fb: FormBuilder) { }
 
     donorModel = this.fb.group({
         name: ['', Validators.required],
-        dob: [''],
-        regDate: [''],
+        dob: ['', Validators.required],
+        regDate: ['', Validators.required],
         bloodGroup: ['', Validators.required],
         address: ['', Validators.required],
         city: ['', Validators.required],
@@ -167,12 +209,7 @@ constructor(private http: HttpClient, private fb: FormBuilder) { }
             quantity: ['', Validators.required]
             });
             
-        addBloodDonator() {
-            var body = {
-                donor_id: this.bloodDonationModel.value.donor_id,
-                doctor_id: this.bloodDonationModel.value.doctor_id,
-                quantity: this.bloodDonationModel.value.quantity
-            };
+        addBloodDonator(body) {
                 return this.http.post<any>(this.baseurl + `/adddonator`, body).pipe(
                     catchError(error => {
                         let errorMsg: string;

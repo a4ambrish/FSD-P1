@@ -10,8 +10,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./reports.page.scss'],
 })
 export class ReportsPage implements OnInit {
+  BloodGroupSummaryDetails: boolean = false;
+  DoctorSummaryDetails: boolean = false;
   public GetAllBloodGroupSummary: any = [];
   public GetAllDoctorSummary: any = [];
+  public GetBloodGroupSummaryDetails: any = [];
+  public GetDoctorSummaryDetails: any = [];
 
   constructor(public service: BloodBankService, private route: Router, 
     private fb: FormBuilder, private commonService: CommonServiceService) { }
@@ -23,39 +27,101 @@ export class ReportsPage implements OnInit {
   }
 
   getAllBloodGroupSummary() {
-    this.service.getAllBloodGroupSummary().subscribe((res: any)=> {
-    if(res.status == true) {
-      this.GetAllBloodGroupSummary = res.result;
+    this.commonService.showLoader().then(()=>{
+      this.service.getAllBloodGroupSummary().subscribe((res: any)=> {
+        if(res.status == true) {
+          this.GetAllBloodGroupSummary = res.result;
+          this.commonService.hideLoader();
+        }
+        else {
+          this.commonService.hideLoader();
+          this.commonService.showMessage(res.message,'danger');
+        }
+      },
+      error => {
+        this.commonService.hideLoader();
+        this.commonService.showMessage(error,'danger');
+      });
+    });
+  }
+
+  getBloodGroupSummaryDetails(bloodGroup: string) {
+    var config = {
+      headers: {
+      "bloodgroup": bloodGroup
+        }
+      }
+    this.commonService.showLoader().then(()=>{
+    this.service.getBloodGroupSummaryDetails(config).subscribe((res: any)=> {
+      if(res.status == true) {
+        this.GetBloodGroupSummaryDetails = res.result;
+        this.BloodGroupSummaryDetails = true;
+        this.commonService.hideLoader();
+      }
+      else {
+        this.commonService.hideLoader();
+        this.commonService.showMessage(res.message,'danger');
+      }
+    },
+    error => {
       this.commonService.hideLoader();
-    }
-    else {
-       this.commonService.hideLoader();
-       this.commonService.showMessage(res.message,'danger');
-    }
-  },
-  error => {
-     this.commonService.hideLoader();
-     this.commonService.showMessage(error,'danger');
+      this.commonService.showMessage(error,'danger');
+    });
   });
-}
+  }
+
+  getDoctorSummaryDetails(id: any) {
+    var Id: string = id + '';
+    var config = {
+      headers: {
+      "doctorid": Id
+        }
+      }
+    this.commonService.showLoader().then(()=>{
+    this.service.getDoctorSummaryDetails(config).subscribe((res: any)=> {
+      if(res.status == true) {
+        this.GetDoctorSummaryDetails = res.result;
+        this.DoctorSummaryDetails = true;
+        this.commonService.hideLoader();
+      }
+      else {
+        this.commonService.hideLoader();
+        this.commonService.showMessage(res.message,'danger');
+      }
+    },
+    error => {
+      this.commonService.hideLoader();
+      this.commonService.showMessage(error,'danger');
+    });
+  });
+  }
 
 
-getAllDoctorSummary() {
-  debugger
-  this.service.getAllDoctorSummary().subscribe((res: any)=> {
-  if(res.status == true) {
-    this.GetAllDoctorSummary = res.result;
-    this.commonService.hideLoader();
+  getAllDoctorSummary() {
+    //this.commonService.showLoader().then(()=>{
+      this.service.getAllDoctorSummary().subscribe((res: any)=> {
+        if(res.status == true) {
+          this.GetAllDoctorSummary = res.result;
+          this.commonService.hideLoader();
+        }
+        else {
+          this.commonService.hideLoader();
+          this.commonService.showMessage(res.message,'danger');
+        }
+      },
+      error => {
+        this.commonService.hideLoader();
+        this.commonService.showMessage(error,'danger');
+      });
+    //});
   }
-  else {
-     this.commonService.hideLoader();
-     this.commonService.showMessage(res.message,'danger');
+
+  closeDonorDetailsByBloodGroup() {
+    this.BloodGroupSummaryDetails = false;
   }
-},
-error => {
-   this.commonService.hideLoader();
-   this.commonService.showMessage(error,'danger');
-});
-}
+
+  closeDonorDetailsByDoctor() {
+    this.DoctorSummaryDetails = false;
+  }
 
 }

@@ -52,21 +52,23 @@ export class CommonServiceService {
     }, 350);
   }
 
-  showLoader() {
-    this.loadingCtrl.create({
+  async showLoader() {
+    const loading = await this.loadingCtrl.create({
         spinner: 'lines',
         message: 'Please wait...',
         translucent: true
-    }).then((res) => {
-        res.present();
     });
+
+    return loading.present();
   }
 
   hideLoader() {
-    this.loadingCtrl.dismiss().then((res) => {
-      console.log('Loader closed!', res);
+    this.loadingCtrl.dismiss(null , 'cancel').then((res) => {
+    
+     // console.log('Loader closed!', res);
+
     }).catch((err) => {
-      console.log('Error occured : ', err);
+    //  console.log('Error occured : ', err);
     });
   }
 

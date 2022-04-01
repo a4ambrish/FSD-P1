@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { BloodBankService } from '../../services/bloodbank.service';
 import { CommonServiceService } from './../../services/common-service.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AESEncryptDecryptService } from '../../services/aesencrypt-decrypt.service';
 
 @Component({
   selector: 'app-doctor',
@@ -14,15 +13,16 @@ export class DoctorPage implements OnInit {
   public GetAllDoctorList: any = [];
   display='none';
 
-  constructor(public service: BloodBankService, private route: Router, private AESEncryptDecryptService: AESEncryptDecryptService,
+  constructor(public service: BloodBankService, private route: Router,
     private fb: FormBuilder, private commonService: CommonServiceService) { }
 
   ngOnInit() {
     this.getAllDoctorList();
-    this.getAllEncDoctorList();
+    //this.getAllEncDoctorList();
   }
 
   getAllDoctorList() {
+    this.commonService.showLoader().then(()=>{
       this.service.getAllDoctorList().subscribe((res: any)=> {
       if(res.status == true) {
         this.GetAllDoctorList = res.result;
@@ -37,18 +37,23 @@ export class DoctorPage implements OnInit {
       this.commonService.hideLoader();
       this.commonService.showMessage(error,'danger');
     });
+  });
   }
 
   onSubmit() {
-    this.service.addDoctor().subscribe((res: any) => {
-      if (res.status === true) {
-        this.resetDoctorForm();
-        this.closeModalDialog();
-        this.getAllDoctorList();
-      }
-      else {
-        this.commonService.showMessage(res.responseMap.error,'danger');
-      }
+    this.commonService.showLoader().then(()=>{
+      this.service.addDoctor().subscribe((res: any) => {
+        if (res.status === true) {
+          this.resetDoctorForm();
+          this.closeModalDialog();
+          this.getAllDoctorList();
+          this.commonService.hideLoader();
+        }
+        else {
+          this.commonService.hideLoader();
+          this.commonService.showMessage(res.error,'danger');
+        }
+      });
     });
   }
 
@@ -65,22 +70,22 @@ export class DoctorPage implements OnInit {
     this.service.donorModel.reset();
   }
 
-  getAllEncDoctorList() {
-      this.service.getAllEncDoctorList().subscribe((res: any)=> {
-        let decryptedText = this.AESEncryptDecryptService.decrypt(res);
-        if(res.status == true) {
-          this.GetAllDoctorList = res.result;
-          this.commonService.hideLoader();
-        }
-        else {
-          this.commonService.hideLoader();
-          this.commonService.showMessage(res.message,'danger');
-        }
-      },
-      error => {
-        this.commonService.hideLoader();
-        this.commonService.showMessage(error,'danger');
-      });
-  }
+  // getAllEncDoctorList() {
+  //     this.service.getAllEncDoctorList().subscribe((res: any)=> {
+  //       let decryptedText = this.AESEncryptDecryptService.decrypt(res);
+  //       if(res.status == true) {
+  //         this.GetAllDoctorList = res.result;
+  //         this.commonService.hideLoader();
+  //       }
+  //       else {
+  //         this.commonService.hideLoader();
+  //         this.commonService.showMessage(res.message,'danger');
+  //       }
+  //     },
+  //     error => {
+  //       this.commonService.hideLoader();
+  //       this.commonService.showMessage(error,'danger');
+  //     });
+  // }
 
 }
