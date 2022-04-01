@@ -22,7 +22,8 @@ module.exports = function(app) {
         }
     });
 
-    app.get('/donorById', async(req, res) => {
+    app.get('/api/donorById', async(req, res) => {
+        console.log(req.headers)
         headers = {
             'donorId': req.headers.id
         }

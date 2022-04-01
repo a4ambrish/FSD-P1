@@ -1,14 +1,38 @@
 const connect = require('../../database')
 
-class employeeController {
+class BloodDonateController {
 
     getAllBloodDonatorList() {
         return new Promise((resolve, reject) => {
             const query = connect.query(`SELECT concat(d.firstname, ' ',d.lastname) AS doctor_name,
              dnr.name AS donor_name, bd.quantity FROM blood_donation bd
             INNER JOIN doctor d ON d.id = bd.doctor_id
-            INNER JOIN donor dnr ON dnr.id = bd.donor_id
-            `, 
+            INNER JOIN donor dnr ON dnr.id = bd.donor_id`, 
+            (err, res) => {
+                return err ? reject(err): resolve(res);
+            })
+        })
+    }
+
+    getBloodGroupSummaryDetails(data) {
+        return new Promise((resolve, reject) => {
+            const query = connect.query(`select d.blood_group, d.name, b.quantity
+            from donor d
+            INNER JOIN blood_donation b ON d.id = b.donor_id
+            where d.blood_group = $1`, [data.bloodgroup],
+            (err, res) => {
+                return err ? reject(err): resolve(res);
+            })
+        })
+    }
+
+    getDoctorSummaryDetails(data) {
+        return new Promise((resolve, reject) => {
+            const query = connect.query(`select d.blood_group, d.name, b.quantity
+            from donor d
+            INNER JOIN blood_donation b ON d.id = b.donor_id
+            INNER JOIN doctor dc ON dc.id = b.doctor_id
+            where dc.id = $1`, [data.doctorId],
             (err, res) => {
                 return err ? reject(err): resolve(res);
             })
@@ -35,11 +59,10 @@ class employeeController {
 
     getAllBloodGroupReportlist() {
         return new Promise((resolve, reject) => {
-            const query = connect.query(`select blood_group, sum(quantity) as quantity,count(*) from (
-                select d.blood_group, b.quantity
-                from donor d
-                INNER JOIN blood_donation b
-                ON d.id = b.donor_id) a group by blood_group`, 
+            const query = connect.query(`select d.blood_group, sum(b.quantity) as quantity,count(blood_group)
+            from donor d
+            INNER JOIN blood_donation b
+            ON d.id = b.donor_id group by d.blood_group`, 
             (err, res) => {
                 return err ? reject(err): resolve(res);
             })
@@ -48,12 +71,11 @@ class employeeController {
 
     getAllDoctorReportlist() {
         return new Promise((resolve, reject) => {
-            const query = connect.query(`select doctor_name, sum(quantity) as quantity, count(*) from (
-                select d.blood_group, b.quantity, CONCAT(dc.firstname, ' ',dc.lastname) AS doctor_name
-                from donor d
-                LEFT JOIN blood_donation b ON d.id = b.donor_id
-                INNER JOIN doctor dc ON dc.id = b.doctor_id
-                ) a group by doctor_name`, 
+            const query = connect.query(`select dc.id, CONCAT(dc.firstname, ' ',dc.lastname) AS doctor_name, 
+            sum(b.quantity) as quantity, count(*)
+            from donor d INNER JOIN blood_donation b ON d.id = b.donor_id
+            INNER JOIN doctor dc ON dc.id = b.doctor_id
+            group by dc.id, doctor_name`, 
             (err, res) => {
                 return err ? reject(err): resolve(res);
             })
@@ -63,4 +85,4 @@ class employeeController {
 
 }
 
-module.exports = new employeeController();
+module.exports = new BloodDonateController();

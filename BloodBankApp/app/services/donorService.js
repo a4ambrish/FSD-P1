@@ -1,6 +1,6 @@
 const connect = require('../../database')
 
-class employeeController {
+class DonorController {
 
     getAllDonorList() {
         return new Promise((resolve, reject) => {
@@ -30,4 +30,4 @@ class employeeController {
 
 }
 
-module.exports = new employeeController();
+module.exports = new DonorController();

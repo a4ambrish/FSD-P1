@@ -1,6 +1,6 @@
 const connect = require('../../database')
 
-class employeeController {
+class FileUploadController {
 
     singleFileUpload(data) {
         return new Promise((resolve, reject) => {
@@ -15,6 +15,6 @@ class employeeController {
 
 }
 
-module.exports = new employeeController();
+module.exports = new FileUploadController();
 
   
