@@ -19,8 +19,11 @@ Then run following command
 
 # BloodBankIonic
 
-firstly open terminal and run "npm install" command.
- run 
+### firstly open terminal and run to donwload npm packages
+
+```npm install```
+
+### to run application
  
 ``` npm start```
 or
