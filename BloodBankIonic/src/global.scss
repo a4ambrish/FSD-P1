@@ -491,6 +491,47 @@ table.center{
   bottom: 39px;
 }
 
+.head_user {
+  position: absolute; 
+  right: 10px; 
+  top:18px;
+}
+
+.icon-user1 {
+  font-size: 18px;
+  text-transform: uppercase;
+  border: 2px solid #FFFFFF;
+  border-radius: 50%;
+  padding: 9px;
+}
+
+.label1 {
+  cursor: pointer;
+  color:white;
+}
+
+//---------------------- Header open -----------------------------
+.dropdown {
+  position: absolute !important;
+  top: 54px;
+  right: 2px;
+  width: 170px;
+  z-index: 1;
+  background-color: #7f7c83;
+  border: 1px solid #cecaca;
+}
+
+.dropdown .hover {
+  background-color: #816c9c;
+}
+
+.dropdown .divider {
+  height: 1px;
+  margin: 1px 0;
+  overflow: hidden;
+  background-color: #f4e5e5 !important;
+}
+
 .title {
   position: absolute;
   font-family: serif !important;
@@ -498,3 +539,4 @@ table.center{
   top: 12px;
   bottom: 0;
 }
+//---------------------- Header close -----------------------------

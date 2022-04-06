@@ -201,13 +201,6 @@ constructor(private http: HttpClient, private fb: FormBuilder) { }
                     })
                 );
             }
-
-
-        bloodDonationModel = this.fb.group({
-            donor_id: ['', Validators.required],
-            doctor_id: ['', Validators.required],
-            quantity: ['', Validators.required]
-            });
             
         addBloodDonator(body) {
                 return this.http.post<any>(this.baseurl + `/adddonator`, body).pipe(

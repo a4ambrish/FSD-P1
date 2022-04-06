@@ -11,6 +11,18 @@ class FileUploadController {
             });
         });
     }
+
+    addDonor(data, file) {
+        console.log(data)
+        console.log(file)
+        return new Promise((resolve, reject) => {
+            const query = connect.query(`INSERT INTO donor(name, dob, date_of_reg, blood_group, address, city, pincode, imagepath) 
+            VALUES( $1, $2, $3, $4, $5, $6, $7, $8)`,
+            [data.name, data.dob, data.date_of_reg, data.blood_group, data.address, data.city, data.pincode,file], (err, result) => {
+                return err ? reject(err) : resolve(result);
+            });
+        });
+    }
     
 
 }

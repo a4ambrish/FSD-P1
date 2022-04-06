@@ -22,14 +22,14 @@
         <th>Action</th>
       </tr>
     </thead>
-    <tbody *ngFor="let i of GetAllDonorList; let ndx = index">
+    <tbody *ngFor="let donor of GetAllDonorList; let ndx = index">
       <tr>
         <td> {{ndx + 1 | number}} </td>
-        <td> {{i.name}} </td>
-        <td> {{i.blood_group}} </td>
-        <td> {{i.date_of_reg | date : mediumDate}} </td>
-        <td> {{i.address}}, {{i.city}} </td>
-        <td><button (click)="getDonorDetailsById(i.id)"><ion-icon name="create-outline"></ion-icon></button></td>
+        <td> {{donor.name}} </td>
+        <td> {{donor.blood_group}} </td>
+        <td> {{donor.date_of_reg | date : mediumDate}} </td>
+        <td> {{donor.address}}, {{donor.city}} </td>
+        <td><button ><ion-icon name="create-outline"></ion-icon></button></td>
       </tr>
     </tbody>
   </table>
@@ -201,9 +201,5 @@
   </div>  
 </form>
 </div>
-
-
-
-
 
 </ion-content>

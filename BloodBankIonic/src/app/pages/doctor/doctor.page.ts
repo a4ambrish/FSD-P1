@@ -67,7 +67,7 @@ export class DoctorPage implements OnInit {
   }
 
   resetDoctorForm() {
-    this.service.donorModel.reset();
+    //this.donorModel.reset();
   }
 
   // getAllEncDoctorList() {

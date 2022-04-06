@@ -2,7 +2,7 @@ const custom = require('../services/fileUploadService')
 const multer  = require('multer')
 const upload = multer({ dest: 'upload/' })
 const uploads = multer({ dest: 'uploads/' })
-
+var cron = require('node-cron');
 var CronJob = require('cron').CronJob;
 // const cron = require('node-cron')
 
@@ -10,6 +10,28 @@ module.exports = function(app) {
 
     app.post('/api/singlefileupload', upload.single('avatar'), async(req, res) => {   
         const data = req.file;
+        // req.file is the `avatar` file
+        // req.body will hold the text fields, if there were any
+        if(data.size != 0) {
+            res.send({
+                status: true,
+                message: 'File Uploaded Successfully..!',
+                result: data
+            });
+        }
+        else {
+            res.send({
+                status: false,
+                message: 'Something went wrong. Please try again..!',
+                result: data
+            });
+        }
+    });
+
+    app.post('/api/singlefileuploadwithbody', upload.single('avatar'), async(req, res) => { 
+        const file = req.file;
+        const data = await custom.addDonor(req.body, file.path); 
+
         // req.file is the `avatar` file
         // req.body will hold the text fields, if there were any
         if(data.size != 0) {

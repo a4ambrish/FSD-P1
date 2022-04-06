@@ -5,15 +5,20 @@
     </ion-buttons>
     <h2 class="title"> Blood Bank </h2>
     
+    <!-- <div class="head_user">
+      <a class="icon-user1" #toggleButton (click)="toggleMenu($event)">
+        <label class="label1" title="{{userFullName}}"></label>
+      </a>
+    </div> -->
 
   </ion-toolbar>
 </ion-header>
 
-<div *ngIf="dropdown" class="dropdown" (mouseleave)="dropdown = false" #dropdownbox>
-  <ion-item (click)="dropdown = false" lines="none" [routerLink]="['/update-password']" routerDirection="root" >
+<div *ngIf="isMenuOpen" class="dropdown">
+  <ion-item lines="none" [routerLink]="['/update-password']" routerDirection="root" >
     Change Password
   </ion-item>
-
+  <ion-item class="divider"></ion-item>
   <ion-item button (click)="logout()" lines="none" routerDirection="root" >
     logout
   </ion-item>

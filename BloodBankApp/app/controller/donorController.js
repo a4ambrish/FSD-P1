@@ -45,7 +45,6 @@ module.exports = function(app) {
         }
     });
 
-
     app.post('/api/adddonor',  async(req, res) => {   
         const data = await custom.addDonor(req.body);   
         if (data.rowCount != 0) {

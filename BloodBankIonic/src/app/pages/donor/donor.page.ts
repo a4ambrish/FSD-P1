@@ -13,8 +13,11 @@ import { DatePipe } from '@angular/common';
 })
 export class DonorPage implements OnInit {
   public GetAllDonorList: any = [];
+  public GetAllDonorById: any = [];
   display='none';
   addDonor: boolean = false;
+  //donorModel: FormGroup;
+  //donor: any;
   datePipe = new DatePipe('en-us');
 
   constructor(public service: BloodBankService, private route: Router, 
@@ -24,6 +27,15 @@ export class DonorPage implements OnInit {
 
   ngOnInit() {
     this.getAllDonorList();
+    // this.donorModel = this.fb.group({
+    //   name: ['', Validators.required],
+    //   dob: ['', Validators.required],
+    //   regDate: ['', Validators.required],
+    //   bloodGroup: ['', Validators.required],
+    //   address: ['', Validators.required],
+    //   city: ['', Validators.required],
+    //   pincode: ['', Validators.required]
+    //   });
   }
 
   getAllDonorList() {
@@ -47,6 +59,7 @@ export class DonorPage implements OnInit {
 
   onSubmit() {
     this.commonService.showLoader().then(()=>{
+      //this.donor = this.donorModel.value;
       this.service.addDonor().subscribe((res: any) => {
         if (res.status === true) {
           this.resetDonorForm();
@@ -79,16 +92,18 @@ export class DonorPage implements OnInit {
   }
 
   getDonorDetailsById(id: any) {
+    var Id: string = id + '';
     var config = {
       headers: {
-      "id": id
+      "id": Id
         }
       }
     this.commonService.showLoader().then(()=>{
       this.service.getDonorById(config).subscribe((res: any)=> {
         if(res.status == true) {
-          this.GetAllDonorList = res.result;
-        this.commonService.hideLoader();
+          this.GetAllDonorById = res.result;
+          this.commonService.hideLoader();
+          this.openModalDialog();
         }
         else {
           this.commonService.hideLoader();
@@ -100,6 +115,14 @@ export class DonorPage implements OnInit {
         this.commonService.showMessage(error,'danger');
       });
   });
+  }
+
+  editDonorDetail(donor:any)
+  {
+    debugger
+    this.service.donorModel = donor;
+    console.log(this.service.donorModel);
+    this.addDonor = true;
   }
 
 }

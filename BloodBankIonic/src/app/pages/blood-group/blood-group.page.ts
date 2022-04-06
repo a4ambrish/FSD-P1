@@ -30,6 +30,13 @@ export class BloodGroupPage implements OnInit {
     });
   }
 
+
+  BloodGroupDetail = {
+    donor_name:'',
+    doctor_name:'',
+    quantity:''
+  }
+
   getAllBloodDonationList() {
       this.commonService.showLoader().then(()=>{
         this.service.getAllBloodDonationList().subscribe((res: any)=> {
@@ -123,5 +130,12 @@ export class BloodGroupPage implements OnInit {
     });
   }
 
+  editDonatorDetail(donator:any)
+  {
+    debugger
+    this.BloodGroupDetail = donator;
+    console.log(this.BloodGroupDetail);
+    this.openModalDialog();
+  }
 
 }
